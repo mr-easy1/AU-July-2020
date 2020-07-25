@@ -1,0 +1,10 @@
+Difference between \r and \n:
+
+\r - Carriage return CR
+\n - line feed LF
+
+--> \r is used to return to the start of the same line while \n return to the next line.
+-->\r\n was used in the early days for printers and computers for line termination.
+--> Mac - CR now uses LF
+--> Unix - LF
+--> Windows - CRLF

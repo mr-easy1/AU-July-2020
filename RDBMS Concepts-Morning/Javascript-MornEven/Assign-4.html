@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS World!</title>
+    <style>
+    button {
+  margin:500 auto;
+  display:block;
+} 
+</style>
+
+</head>
+<body>
+<script>
+function regtesting()
+{
+var t=document.getElementById("reg").value;
+//check whether t comes under regex or not as per ques
+
+var reggexx=/^(hot|dot|not).*(ho+t|do+t|no+t)$/
+if(reggexx.test(t))
+{
+    alert("Valid input as per reggex:/^(hot|dot|not).*(ho+t|do+t|no+t)$/");
+}
+else
+{
+ alert("Invalid input as per reggex:/^(hot|dot|not).*(ho+t|do+t|no+t)$/");
+}
+}
+
+function arrayfunction()
+{
+let str=document.getElementById("aip").value;
+let arr = str.split(',').map((item)=> parseInt(item)); 
+
+let r = document.getElementById("result");
+r.innerText = "Given Input Array : " +arr+"\n\n";
+
+r.innerText += "Sorted Array : " +arr.sort((a,b)=>{return a-b })+"\n\n";  
+let filtered_arr = arr.filter((item)=> item > 10 );
+r.innerText += "Filtered Array(item>10) : " +filtered_arr+"\n\n";
+
+let add_one_array = filtered_arr.map((item)=> item + 1  )
+r.innerText += "Add 1 to each item in Filtered Array : " +add_one_array+"\n\n";
+
+let slice_arr = add_one_array.slice(1,5);   
+r.innerText += "Final Sliced Array(1-4) : " +slice_arr+"\n";
+}
+
+</script>
+                                                                                                                                                                                                                                                                                    
+   <h4>Assign no:4(a)</h4>
+    <br>
+    <form  method="get" id="form1">
+        <label for="regex" >Input Regex:</label>
+        <input type="text" id="reg" name="reg"><br><br>
+        </form>
+        <div>
+        <button onclick="regtesting()" type="submit" form="form1" value="Submit">Click to test!</button>
+    </div>
+
+</body>
+<h4>Few input example: <br>
+    hot dog is not //true<br>
+    hot dog is noooot //true<br>
+    hot dog is nt //false</h4>
+<hr style="border: 4px solid blue;" />
+<h4>Assign no:4(b)</h4>
+<br>
+<form>
+Input Array: <input type="text" size="40" id="aip"/>
+<br>
+<p>Input: integer separated by comma(,)</p>
+<p id="result"></p>
+<input type="button" value="check-result" onclick="arrayfunction()"/>
+</form>
+
+
+</html>
