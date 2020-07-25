@@ -1,0 +1,176 @@
+SQL Concepts & Fundamentals (16/07/2020)
+
+Note :
+
+> Assuming you are ready with an ER diagram for the Hospital Management System.
+> You can use any relational database (MySQL/Oracle/MS SQL Server) whichever you prefer.
+> Submission Dt: 20/07/2020
+
+Tasks :
+
+1. Create a database for the Hospital Management System based on your ER. Create appropriate tables & relationships.
+
+Ans: 
+
+DDL queries:
+CREATE, DROP, RENAME and ALTER.
+-- create database hospital_management_system;
+-- show databases;
+-- use hospital_management_system;
+
+-- CREATE TABLE `Doctor` (`Did` varchar(10) not null primary key,
+-- `DName` char(20) not null,
+-- `DPosition` char(10));
+
+--  CREATE TABLE `Department` (`Did` varchar(10) not null primary key,
+-- `DeptName` char(20) not null)
+
+-- create TABLE `Affiliated_with` (`Docid` varchar(10) not null primary key,
+-- `department` varchar(10) not null);
+
+-- drop table affiliated_with;
+
+-- create TABLE `Treated_with` (`Doc` varchar(10) not null primary key,
+-- `pat` varchar(10) not null);
+
+-- CREATE TABLE `Patient` (`pid` varchar(10) not null primary key,
+-- `PName` char(20) not null,
+-- `PDisease` char(10));
+
+--  CREATE TABLE `Department` (`Did` varchar(10) not null primary key,
+-- `DeptName` varchar(10) not null)
+
+-- drop table affiliated_with;
+-- create TABLE `Affiliated_with` (Departmentno int not null primary key,
+-- Did varchar(10), 
+-- foreign key(Did) references Doctor(Did));
+
+-- drop table treated_with ;
+-- create table treats(pat int not null primary key,
+--                     doc varchar(10),
+--                     foreign key (doc) references doctor(Did));
+
+-- alter table patient 
+-- add column doctor_alloted boolean not null;
+
+-- select * from affiliated_with;
+
+
+DML queries:
+
+INSERT, UPDATE and DELETE.
+
+-- insert into Doctor values(1, "JD", "cheifmed");
+-- insert into Doctor values(2, "ER", "Physician");
+-- insert into Doctor values(3, "CT", "Surgical");
+-- insert into Doctor values(4, "BK", "Psychic");
+-- insert into Doctor values(5, "TQ", "attendphys");
+
+
+-- insert into Department values(1, "generalmed");
+-- insert into Department values(2, "surgery");
+-- insert into Department values(3, "psychiatry");
+-- insert into Department values(4, "MDS");
+
+-- insert into affiliated_with values(1,1);
+-- insert into affiliated_with values(3,4);
+-- insert into affiliated_with values(2,3);
+-- insert into affiliated_with values(4,1);
+
+
+-- insert into treats values(1,1);
+-- insert into treats values(2,1);
+-- insert into treats values(3,2);
+-- insert into treats values(4,5);
+-- insert into treats values(5,3);
+-- insert into treats values(6,2);
+-- insert into treats values(7,4);
+-- insert into treats values(8,5);
+--delete from treats;
+-- insert into treats values(1,1);
+-- insert into treats values(2,1);
+-- insert into treats values(3,2);
+-- insert into treats values(4,5);
+-- insert into treats values(5,3);
+-- insert into treats values(6,2);
+-- insert into treats values(7,4);
+-- insert into treats values(8,5);
+-- insert into patient values(1,"Patient1","COVID+");
+-- insert into patient values(2,"Patient2","AIDS");
+-- insert into patient values(3,"Patient3","Cancer");
+-- insert into patient values(4,"Patient4","dis4");
+-- insert into patient values(5,"Patient5","dis5");
+-- insert into patient values(6,"Patient6","dis6");
+-- insert into patient values(7,"Patient7","dis7");
+-- insert into patient values(8,"Patient8","dis8");
+
+
+-- update patient
+-- set doctor_alloted = true
+-- where pid=1;
+-- update patient
+-- set doctor_alloted = false
+-- where pid=2;
+-- update patient
+-- set doctor_alloted = true
+-- where pid=3;
+-- update patient
+-- set doctor_alloted = true
+-- where pid=4;
+-- update patient
+-- set doctor_alloted = false
+-- where pid=5;
+-- update patient
+-- set doctor_alloted = true
+-- where pid=6;
+-- update patient
+-- set doctor_alloted = true
+-- where pid=7;
+-- update patient
+-- set doctor_alloted = false
+-- where pid=8;
+
+2. Design a query to provide a list of doctors, which department they belong to and patients treated by them (if any).
+
+Ans2 Query:
+
+SELECT distinct dr.Dname AS "Doctor-Name", dr.DPosition as "Position", d.DeptName AS "Department", p.PName as "Patient-Name"
+FROM doctor dr
+JOIN affiliated_with a on a.Did=dr.Did
+join treats t on t.doc= dr.Did
+join patient p on p.pid=t.pat
+join department d on d.Did=a.Did;
+ where p.doctor_alloted=true;
+
+Result(JSON):
+[
+	{
+		"Doctor-Name" : "JD",
+		"Position" : "cheifmed",
+		"Department" : "generalmed",
+		"Patient-Name" : "Patient1"
+	},
+	{
+		"Doctor-Name" : "JD",
+		"Position" : "cheifmed",
+		"Department" : "generalmed",
+		"Patient-Name" : "Patient2"
+	},
+	{
+		"Doctor-Name" : "CT",
+		"Position" : "Surgical",
+		"Department" : "psychiatry",
+		"Patient-Name" : "Patient5"
+	},
+	{
+		"Doctor-Name" : "BK",
+		"Position" : "Psychic",
+		"Department" : "MDS",
+		"Patient-Name" : "Patient7"
+	}
+]
+
+
+3. Query to provide the count of patients discharged per day in the last week. 
+
+I am working on it very soon i will update this query along with result in the repos.
