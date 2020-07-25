@@ -1,0 +1,127 @@
+Ques:1 Test all the function on slide 42,43
+
+var tom=[1,2,3,4,5,6,7];
+
+var jerry=["CR7","Ronaldo","Messi","footballer","Portuguese","sports","discipline"];
+
+// concat()
+console.log(tom.concat(jerry));
+VM180:2 (14) [1, 2, 3, 4, 5, 6, 7, "CR7", "Ronaldo", "Messi", "footballer", "Portuguese", "sports", "discipline"]
+
+// every()
+console.log(tom.every(i => (i > 0))); // true
+console.log(tom.every(i => (i > 3))); // false
+VM243:2 true
+VM243:3 false
+
+// filter()
+console.log(tom.filter(i => (i > 3)));
+VM314:2 (4) [4, 5, 6, 7]
+console.log(jerry.filter(i => (i.charAt(0) == 'f')));
+VM387:1 ["footballer"]
+
+console.log(jerry.filter(i => (i.charAt(i.length - 1) == 'e')));
+VM400:1 (2) ["Portuguese", "discipline"]
+
+// forEach()
+tom.forEach(i => (console.log(i * 5)));
+VM428:2 5
+VM428:2 10
+VM428:2 15
+VM428:2 20
+VM428:2 25
+VM428:2 30
+VM428:2 35
+
+// indexOf() lastIndexOf()
+console.log(jerry.indexOf("Ronaldo"));
+console.log(jerry.lastIndexOf("Ronaldo")); 
+VM465:2 1
+VM465:3 5
+
+// join()
+console.log(tom.join("|"));
+VM818:2 1|2|3|4|5|6|7
+console.log(jerry.join("|"));
+VM823:1 CR7|Ronaldo|Messi|footballer|Portuguese|sports|discipline
+
+// map()
+console.log(tom.map(i => (i * i)));
+VM835:2 (7) [1, 4, 9, 16, 25, 36, 49]
+
+// pop()
+console.log(tom.pop());
+console.log(tom);
+VM850:2 7
+VM850:3 (6) [1, 2, 3, 4, 5, 6]
+
+// push()
+tom.push(8);
+console.log(tom);
+VM855:3 (7) [1, 2, 3, 4, 5, 6, 8]
+
+//  reduce()
+console.log(tom.reduce((x, y) => (x - y))); 
+VM860:2 -27
+
+//  reduceRight()
+console.log(tom.reduceRight((x, y) => (x - y)));
+VM865:2 -13
+
+// reverse()
+console.log(tom.reverse());
+VM870:2 (7) [8, 6, 5, 4, 3, 2, 1]
+
+// shift()
+tom.shift();
+console.log(tom);
+VM875:3 (6) [6, 5, 4, 3, 2, 1]
+
+// some()
+console.log(tom.some(i => (i > 4)));
+VM880:2 true
+console.log(tom.some(i => (i > 6)));
+VM1006:1 false
+
+
+//toString()
+console.log(tom.toString());
+VM1011:2 6,5,4,3,2,1
+
+//unshift()
+tom.unshift(9);
+console.log(tom);
+VM1016:3 (7) [9, 6, 5, 4, 3, 2, 1]
+
+// sort()
+console.log(tom.sort());
+VM1021:2 (7) [1, 2, 3, 4, 5, 6, 9]
+
+console.log(jerry.sort());
+VM1026:1 (7) ["CR7", "Messi", "Portuguese", "Ronaldo", "discipline", "footballer", "sports"]
+
+// splice()
+tom.splice(2, 2, 3, 8);
+console.log(tom);
+VM1031:3 (7) [1, 2, 3, 8, 5, 6, 9]
+jerry.splice(2, 1, "Ronaldo", "Messi");
+console.log(jerry);
+VM1036:3 (8) ["CR7", "Messi", "Ronaldo", "Messi", "Ronaldo", "discipline", "footballer", "sports"]0: "CR7"1: "Messi"2: "Ronaldo"3: "Messi"4: "Ronaldo"5: "discipline"6: "footballer"7: "sports"length: 8__proto__: Array(0)
+
+//slice()
+console.log(tom.slice(3, 6));
+VM1042:2 (3) [8, 5, 6]
+console.log(jerry.slice(4, 8));
+VM1047:1 (4) ["Ronaldo", "discipline", "footballer", "sports"]
+
+
+
+
+
+
+
+
+
+
+
+
