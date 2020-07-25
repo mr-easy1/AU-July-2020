@@ -1,0 +1,115 @@
+
+Tasks: Send me Queries for the following.
+
+1. Find all hotels with ratings for Cleanliness>=4
+
+Ans1 Query Approach1:
+
+SELECT type,
+       COUNT(1) AS `count`
+FROM `travel-sample`
+WHERE META().id LIKE "hotel%"
+    AND reviews[*].ratings[0].Cleanliness>=4
+GROUP BY type;
+
+Query Result(JSON): 
+
+[
+  {
+    "count": 594,
+    "type": "hotel"
+  }
+]
+
+Ans1 Query Approach2:
+
+SELECT t.id, v.ratings.Cleanliness
+FROM `travel-sample` t
+UNNEST reviews v
+WHERE t.type="hotel"
+    AND v.ratings.Cleanliness>=4
+
+
+2. Find the highest airport in each country.
+
+Initially, I have wrongly concluded from this question i.e "Find the highest number of airport from all the available country" whose Query is:
+
+SELECT array_max((SELECT  count(country) as cnt
+                  FROM `travel-sample` WHERE type = "airport"
+                  GROUP BY country)[*].cnt);
+
+Query Result(JSON):
+[
+  {
+    "$1": 1560
+  }
+]
+
+
+Ans2 Query:
+SELECT  country, MAX(geo.alt) AS `MAXIMUM_ALTITUDE`
+FROM `travel-sample` t
+WHERE t.type="airport"
+group by country
+
+
+Query Result(Table):
+
+MAXIMUM_ALTITUDE  country
+6588	          "France"
+9078	          "United States"
+811	          "United Kingdom"
+
+
+
+3. Find all routes operated by Air France from the city of Marseille. (use field faa)
+
+Ans3 Query:
+
+SELECT airline.name as `Airline_Name`, route.sourceairport as `Source_Airport`, route.destinationairport as `Destination_Airport`, route.airline as `Airline`
+FROM `travel-sample` route
+  JOIN `travel-sample` airline
+  ON KEYS route.airlineid
+WHERE route.type = "route" and airline.name= "Air France"
+AND airline.type = "airline"
+AND route.sourceairport = "MRS"
+
+
+Query Result(Table):
+
+Airline	Airline_Name  Destination_Airport Source_Airport
+"AF"	"Air France"	"AJA"	             "MRS"
+"AF"	"Air France"	"ALG"	             "MRS"
+"AF"	"Air France"	"AMS"	             "MRS"
+"AF"	"Air France"	"ATH"	             "MRS"
+"AF"	"Air France"	"BES"	             "MRS"
+"AF"	"Air France"	"BIA"	             "MRS"
+"AF"	"Air France"	"BIQ"	             "MRS"
+"AF"	"Air France"	"BOD"	             "MRS"
+"AF"	"Air France"	"CDG"	             "MRS"
+"AF"	"Air France"	"CLY"	             "MRS"
+"AF"	"Air France"	"FCO"	             "MRS"
+"AF"	"Air France"	"FSC"	             "MRS"
+"AF"	"Air France"	"IST"	             "MRS"
+"AF"	"Air France"	"LIL"	             "MRS"
+"AF"	"Air France"	"MXP"	             "MRS"
+"AF"	"Air France"	"NTE"	             "MRS"
+"AF"	"Air France"	"ORY"	             "MRS"
+"AF"	"Air France"	"PRG"	             "MRS"
+"AF"	"Air France"	"RAK"	             "MRS"
+"AF"	"Air France"	"RNS"	             "MRS"
+"AF"	"Air France"	"SVO"	             "MRS"
+"AF"	"Air France"	"TLV"	             "MRS"
+"AF"	"Air France"	"TUN"	             "MRS"
+"AF"	"Air France"	"TXL"	             "MRS"
+"AF"	"Air France"	"VCE"	             "MRS"
+
+
+
+ 
+
+
+
+
+
+
