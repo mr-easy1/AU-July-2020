@@ -1,0 +1,17 @@
+2.Explanation of the below function
+
+var add=(function (){
+    var counter=0;
+    return function(){return counter +=1;}
+})()
+
+add(); //1
+add(); //2
+add(); //3
+
+Exp: In JavaScript, when a function completes its execution, any variables declared within its body is flushed from the allocated memory.
+Here () means we called the function whic we declared just, so "add" will be assigned the return value of the function but this return 
+function has access to the var 'counter' Even though the function has returned already,  returned object still reference to the variables
+of the function so,these variables will not be destroyed.
+
+Result of which When we call add(), it will access 'counter' variable and increase its value by 1.
