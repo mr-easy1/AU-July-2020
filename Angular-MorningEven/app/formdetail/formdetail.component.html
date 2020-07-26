@@ -1,0 +1,22 @@
+<div style="background-color: #4cdd38;width:50%;margin:50px 25%;padding:0px 30px 30px">
+      
+    <button (click)="toggleinner()" 
+    style="position: relative;top: 0px;left: 50%;border: 0px;" class="danger">X</button>
+    <form [formGroup] = "userform" (ngSubmit)="onSubmit()">  
+          <div style="text-align: left;padding:20px">
+                <label>EmployeeID*:</label><br>
+                <input type="text"  formControlName="Empid"  required><br><br>
+                <label>FirstName*:</label><br>
+                <input type="text" formControlName="Fname" required><br><br>
+                <label>LastName*:</label><br>
+                <input type="text" formControlName="Lname"  required><br><br>
+                <label>Age:</label><br>
+                <input type="number"  formControlName="age" min="0" max="50"><br>
+                <label *ngIf="userform.get('age').invalid && !userform.get('age').untouched">Must be in range from 1-50<br></label><br>
+                <label>City:</label><br>
+                <input type="text" formControlName="city"  ><br>
+          </div>
+          <button type="submit" [disabled]="!userform.valid">Save</button>
+    </form>
+</div>
+

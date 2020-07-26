@@ -1,0 +1,33 @@
+
+
+<html>
+<head>
+      <style>
+            table, th  {
+              border: 3px solid grey;
+              border-collapse: collapse;
+              padding: 5px;
+            }
+            table tr:nth-child(odd) {
+              background-color: #f1f1f1;
+            }
+            table tr:nth-child(even) {
+              background-color: #ffffff;
+            }
+            </style>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+<table>
+      <br><br>
+      <tr><th>ID</th><th>Title</th></tr>
+      <tr *ngFor="let element of str">
+                  <td>{{ele.id}}</td>
+                  <td>{{ele.title}}</td>
+      </tr>      
+</table>
+</body>
+
+
+<app-dashboard-child></app-dashboard-child>
+</html>
